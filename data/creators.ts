@@ -13,12 +13,12 @@ export const creators: Creator[] = [
       accent: "#60a5fa",
       gradient: "from-blue-500/45 via-violet-500/15 to-transparent",
     },
-    image: "/avatars/kai.png",
+    image: "/creators/kai.png",
     tags: ["AI", "Startups", "Product"],
     latestDrops: [
-      { title: "3 AI workflows I actually use", meta: "Reel · 0:58" },
-      { title: "How I validate a product idea", meta: "Thread · 9 posts" },
-      { title: "My 2027 tech radar", meta: "Guide · 6 min read" },
+      { title: "3 AI workflows I actually use", meta: "Reel · 0:58", image: "/creators/kai/feed-1.png" },
+      { title: "How I validate a product idea", meta: "Thread · 9 posts", image: "/creators/kai/feed-2.png" },
+      { title: "My 2027 tech radar", meta: "Guide · 6 min read", image: "/creators/kai/feed-3.png" },
     ],
     prompts: [
       {
@@ -45,12 +45,12 @@ export const creators: Creator[] = [
       accent: "#fb923c",
       gradient: "from-orange-400/45 via-amber-500/15 to-transparent",
     },
-    image: "/avatars/malik.png",
+    image: "/creators/malik.png",
     tags: ["Travel", "Adventure", "Guides"],
     latestDrops: [
-      { title: "48 hours on the coast", meta: "Vlog · 12 min" },
-      { title: "The route I almost skipped", meta: "Story · 7 slides" },
-      { title: "Carry-on essentials", meta: "Checklist · 14 items" },
+      { title: "48 hours on the coast", meta: "Vlog · 12 min", image: "/creators/malik/feed-1.png" },
+      { title: "The route I almost skipped", meta: "Story · 7 slides", image: "/creators/malik/feed-2.png" },
+      { title: "Carry-on essentials", meta: "Checklist · 14 items", image: "/creators/malik/feed-3.png" },
     ],
     prompts: [
       {
@@ -77,12 +77,12 @@ export const creators: Creator[] = [
       accent: "#f472b6",
       gradient: "from-pink-400/45 via-fuchsia-500/15 to-transparent",
     },
-    image: "/avatars/sofia.png",
+    image: "/creators/sofia.png",
     tags: ["Fashion", "Beauty", "City Life"],
     latestDrops: [
-      { title: "The five-piece city wardrobe", meta: "Lookbook · 5 looks" },
-      { title: "Coffee, tailoring, repeat", meta: "Reel · 0:42" },
-      { title: "My night-out edit", meta: "Story · 6 slides" },
+      { title: "The five-piece city wardrobe", meta: "Lookbook · 5 looks", image: "/creators/sofia/feed-1.png" },
+      { title: "Coffee, tailoring, repeat", meta: "Reel · 0:42", image: "/creators/sofia/feed-2.png" },
+      { title: "My night-out edit", meta: "Story · 6 slides", image: "/creators/sofia/feed-3.png" },
     ],
     prompts: [
       {
@@ -109,12 +109,12 @@ export const creators: Creator[] = [
       accent: "#34d399",
       gradient: "from-emerald-400/45 via-teal-500/15 to-transparent",
     },
-    image: "/avatars/maya.png",
+    image: "/creators/maya.png",
     tags: ["Fitness", "Wellness", "Habits"],
     latestDrops: [
-      { title: "20-minute hotel workout", meta: "Workout · 20 min" },
-      { title: "My Sunday reset", meta: "Reel · 1:05" },
-      { title: "A better morning in 3 steps", meta: "Guide · 4 min read" },
+      { title: "20-minute hotel workout", meta: "Workout · 20 min", image: "/creators/maya/feed-1.png" },
+      { title: "My Sunday reset", meta: "Reel · 1:05", image: "/creators/maya/feed-2.png" },
+      { title: "A better morning in 3 steps", meta: "Guide · 4 min read", image: "/creators/maya/feed-3.png" },
     ],
     prompts: [
       {

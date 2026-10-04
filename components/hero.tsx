@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowDown, Sparkles } from "lucide-react";
 import { CreatorPhoto } from "@/components/creator-photo";
 import { creators } from "@/data/creators";
+import { setCreatorParam } from "@/shared/lib/creator-url";
 import { Container } from "@/shared/ui/container";
 import { Pill } from "@/shared/ui/pill";
 
@@ -15,7 +18,7 @@ const collageCreators = creators.slice(0, COLLAGE_POSITIONS.length);
 
 export function Hero() {
   return (
-    <Container as="section" className="relative pb-16 pt-8 sm:pb-24 sm:pt-16">
+    <Container as="section" className="relative pb-12 pt-8 sm:pb-16 sm:pt-16">
       <div className="pointer-events-none absolute left-1/2 top-10 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-violet-500/20 blur-[110px]" />
 
       <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
@@ -68,9 +71,13 @@ export function Hero() {
           <div className="absolute inset-x-10 top-10 h-72 rounded-full bg-gradient-to-br from-violet-500/25 via-pink-500/10 to-cyan-500/15 blur-3xl" />
 
           {collageCreators.map((creator, index) => (
-            <div
+            <button
               key={creator.id}
-              className={`absolute ${COLLAGE_POSITIONS[index]} aspect-[4/5] w-[44%] overflow-hidden rounded-[28px] border border-white/15 bg-white/5 p-1.5 shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur`}
+              type="button"
+              aria-label={`Open ${creator.name} profile`}
+              onClick={() => setCreatorParam(creator.slug)}
+              style={{ "--accent": creator.theme.accent }}
+              className={`absolute ${COLLAGE_POSITIONS[index]} aspect-[4/5] w-[44%] overflow-hidden rounded-[28px] border border-white/15 bg-white/5 p-1.5 text-left shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur transition duration-300 hover:z-10 hover:border-(--accent)/50 hover:shadow-[0_24px_70px_color-mix(in_oklab,var(--accent)_30%,transparent)] focus-visible:z-10 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.98]`}
             >
               <CreatorPhoto
                 creator={creator}
@@ -84,7 +91,7 @@ export function Hero() {
                   <p className="text-[10px] text-white/55">{creator.category}</p>
                 </div>
               </CreatorPhoto>
-            </div>
+            </button>
           ))}
         </div>
       </div>

@@ -31,10 +31,11 @@ function ChatBubble({ from, className, children }: ChatBubbleProps) {
 
 type ChatPreviewProps = {
   creator: Creator;
+  initialPromptIndex?: number;
 };
 
-export function ChatPreview({ creator }: ChatPreviewProps) {
-  const [selectedPrompt, setSelectedPrompt] = useState(creator.prompts[0]);
+export function ChatPreview({ creator, initialPromptIndex = 0 }: ChatPreviewProps) {
+  const [selectedPrompt, setSelectedPrompt] = useState(creator.prompts[initialPromptIndex] ?? creator.prompts[0]);
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
@@ -97,7 +98,7 @@ export function ChatPreview({ creator }: ChatPreviewProps) {
               aria-pressed={isActive}
               onClick={() => selectPrompt(prompt)}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs transition duration-200 hover:border-(--accent)/40 hover:bg-(--accent)/10 hover:text-white active:bg-(--accent)/15 motion-safe:active:scale-[0.97]",
+                "inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-[13px] transition duration-200 hover:border-(--accent)/40 hover:bg-(--accent)/10 hover:text-white active:bg-(--accent)/15 motion-safe:active:scale-[0.97]",
                 isActive ? "border-(--accent)/40 bg-(--accent)/10 text-white" : "border-white/10 bg-white/[0.05] text-white/65",
               )}
             >

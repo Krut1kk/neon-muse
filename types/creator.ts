@@ -6,6 +6,7 @@ export type CreatorPrompt = {
 export type CreatorDrop = {
   title: string;
   meta: string;
+  image: string;
 };
 
 export type CreatorTheme = {

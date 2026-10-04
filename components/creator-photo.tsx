@@ -7,6 +7,7 @@ type CreatorPhotoProps = {
   creator: Creator;
   sizes: string;
   preload?: boolean;
+  eager?: boolean;
   accent?: boolean;
   zoomOnHover?: boolean;
   className?: string;
@@ -18,6 +19,7 @@ export function CreatorPhoto({
   creator,
   sizes,
   preload = false,
+  eager = false,
   accent = true,
   zoomOnHover = false,
   className,
@@ -31,6 +33,7 @@ export function CreatorPhoto({
         alt={`${creator.name}, ${creator.category} virtual creator`}
         fill
         preload={preload}
+        loading={eager ? "eager" : undefined}
         sizes={sizes}
         className={cn(
           "object-cover",

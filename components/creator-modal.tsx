@@ -2,14 +2,13 @@
 
 import { useEffect, useRef, useState, type AnimationEvent } from "react";
 import { Send, X } from "lucide-react";
-import { ChatPreview } from "@/components/chat-preview";
 import { CreatorPhoto } from "@/components/creator-photo";
-import { LatestDrops } from "@/components/latest-drops";
+import { CreatorTabs } from "@/components/creator-tabs";
 import { cn } from "@/shared/lib/cn";
-import { TagList } from "@/shared/ui/tag-list";
 import { TelegramLink } from "@/shared/ui/telegram-link";
-import { VerifiedName } from "@/shared/ui/verified-name";
 import type { Creator } from "@/types/creator";
+
+const PHOTO_SIZES = "(max-width: 1023px) 100vw, 450px";
 
 type CreatorModalProps = {
   creator: Creator;
@@ -57,7 +56,7 @@ export function CreatorModal({ creator, onClose }: CreatorModalProps) {
         style={{ "--accent": creator.theme.accent }}
         onAnimationEnd={finishClose}
         className={cn(
-          "relative flex max-h-[94dvh] w-full flex-col overflow-hidden rounded-t-[28px] border-t border-white/10 bg-surface shadow-[0_30px_100px_rgba(0,0,0,0.65)] md:max-w-4xl md:rounded-[32px] md:border",
+          "relative flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[28px] border-t border-white/10 bg-surface shadow-[0_30px_100px_rgba(0,0,0,0.65)] md:max-h-[min(880px,92dvh)] md:max-w-[1040px] md:rounded-[32px] md:border lg:max-h-[min(780px,88dvh)] lg:min-h-[min(720px,88dvh)]",
           isClosing ? "pointer-events-none animate-sheet-out md:animate-modal-out" : "motion-safe:animate-sheet-in md:motion-safe:animate-modal-in",
         )}
       >
@@ -74,35 +73,19 @@ export function CreatorModal({ creator, onClose }: CreatorModalProps) {
           <X size={18} />
         </button>
 
-        <div className="relative grid overflow-y-auto overscroll-contain lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="relative flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain lg:grid lg:grid-cols-[43fr_57fr] lg:grid-rows-1 lg:overflow-hidden">
           <CreatorPhoto
             creator={creator}
-            sizes="(max-width: 1024px) 100vw, 40vw"
-            className="h-[46dvh] min-h-[280px] md:h-auto md:min-h-[520px] lg:min-h-full"
-            imageClassName="object-[center_30%] md:object-center"
-          >
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent p-6 pt-24">
-              <VerifiedName name={creator.name} size="lg" />
-              <p className="mt-1 text-sm text-white/60">
-                {creator.handle} · {creator.followers} followers
-              </p>
-            </div>
-          </CreatorPhoto>
+            sizes={PHOTO_SIZES}
+            eager
+            className="h-[40dvh] min-h-[240px] shrink-0 lg:h-full lg:min-h-0"
+            imageClassName="object-[center_25%] lg:object-center"
+          />
 
-          <div className="px-5 pt-5 sm:px-7 sm:pt-7 lg:p-8">
-            <TagList tags={creator.tags} size="md" />
+          <div className="flex flex-1 flex-col lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain">
+            <CreatorTabs creator={creator} />
 
-            <p className="mt-5 text-sm leading-6 text-white/65">{creator.bio}</p>
-
-            <div className="mt-7">
-              <LatestDrops drops={creator.latestDrops} />
-            </div>
-
-            <div className="mt-5">
-              <ChatPreview key={creator.slug} creator={creator} />
-            </div>
-
-            <div className="sticky bottom-0 z-10 -mx-5 mt-5 border-t border-white/10 bg-surface/80 px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl sm:-mx-7 sm:px-7 lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:p-0 lg:backdrop-blur-none">
+            <div className="sticky bottom-0 z-10 mt-auto border-t border-white/10 bg-surface/80 px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl sm:px-7">
               <TelegramLink variant="block" label={`Continue chatting with ${creator.name} in Telegram`}>
                 <Send size={16} /> Continue in Telegram
               </TelegramLink>

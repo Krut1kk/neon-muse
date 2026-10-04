@@ -5,7 +5,7 @@ import { TelegramLink } from "@/shared/ui/telegram-link";
 
 export function TelegramCta() {
   return (
-    <Container as="section" className="pb-24">
+    <Container as="section" className="pb-12">
       <div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-surface p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)] sm:p-10 lg:p-12">
         <div className="absolute -right-20 -top-24 size-72 rounded-full bg-telegram/20 blur-[90px]" />
         <div className="absolute -bottom-24 left-1/3 size-64 rounded-full bg-violet-500/15 blur-[90px]" />
