@@ -14,7 +14,7 @@ export function CreatorCard({ creator, onOpen }: CreatorCardProps) {
   return (
     <article
       style={{ "--accent": creator.theme.accent }}
-      className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.035] p-2.5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl transition duration-300 hover:border-(--accent)/35 hover:shadow-[0_24px_80px_color-mix(in_oklab,var(--accent)_18%,transparent)] active:border-(--accent)/50 active:duration-100 motion-safe:hover:-translate-y-1 motion-safe:active:scale-[0.985]"
+      className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.035] p-2.5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl transition duration-300 hover:border-(--accent)/35 hover:shadow-[0_24px_80px_color-mix(in_oklab,var(--accent)_18%,transparent)] active:border-(--accent)/50 active:duration-100 motion-safe:hover:-translate-y-1 motion-safe:active:scale-[0.99]"
     >
       <CreatorPhoto
         creator={creator}

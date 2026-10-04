@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, type AnimationEvent } from "react";
 import { Send, X } from "lucide-react";
 import { ChatPreview } from "@/components/chat-preview";
 import { CreatorPhoto } from "@/components/creator-photo";
 import { LatestDrops } from "@/components/latest-drops";
+import { cn } from "@/shared/lib/cn";
 import { TagList } from "@/shared/ui/tag-list";
 import { TelegramLink } from "@/shared/ui/telegram-link";
 import { VerifiedName } from "@/shared/ui/verified-name";
@@ -17,6 +18,7 @@ type CreatorModalProps = {
 
 export function CreatorModal({ creator, onClose }: CreatorModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -25,28 +27,48 @@ export function CreatorModal({ creator, onClose }: CreatorModalProps) {
     }
   }, []);
 
-  const close = () => dialogRef.current?.close();
+  const requestClose = () => setIsClosing(true);
+
+  const finishClose = (event: AnimationEvent<HTMLDivElement>) => {
+    const dialog = dialogRef.current;
+    if (isClosing && event.target === event.currentTarget && dialog?.open) {
+      dialog.close();
+    }
+  };
 
   return (
     <dialog
       ref={dialogRef}
       aria-label={`${creator.name} profile`}
       onClose={onClose}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) close();
+      onCancel={(event) => {
+        event.preventDefault();
+        requestClose();
       }}
-      className="m-0 h-dvh max-h-none w-full max-w-none items-end justify-center bg-transparent text-white backdrop:bg-black/75 backdrop:backdrop-blur-md open:flex sm:items-center sm:p-5"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) requestClose();
+      }}
+      className={cn(
+        "m-0 h-dvh max-h-none w-full max-w-none items-end overflow-clip justify-center bg-transparent text-white backdrop:bg-black/75 backdrop:backdrop-blur-sm open:flex md:items-center md:p-5",
+        isClosing ? "backdrop:animate-backdrop-out" : "backdrop:animate-backdrop-in",
+      )}
     >
       <div
         style={{ "--accent": creator.theme.accent }}
-        className="relative flex max-h-[94dvh] w-full flex-col overflow-hidden rounded-t-[32px] border border-white/10 bg-surface shadow-[0_30px_100px_rgba(0,0,0,0.65)] animate-modal-in sm:max-w-4xl sm:rounded-[32px]"
+        onAnimationEnd={finishClose}
+        className={cn(
+          "relative flex max-h-[94dvh] w-full flex-col overflow-hidden rounded-t-[28px] border-t border-white/10 bg-surface shadow-[0_30px_100px_rgba(0,0,0,0.65)] md:max-w-4xl md:rounded-[32px] md:border",
+          isClosing ? "pointer-events-none animate-sheet-out md:animate-modal-out" : "motion-safe:animate-sheet-in md:motion-safe:animate-modal-in",
+        )}
       >
+        <div aria-hidden="true" className="mx-auto mb-2 mt-2.5 h-1 w-9 shrink-0 rounded-full bg-white/25 md:hidden" />
+
         <div className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-(--accent)/15 blur-[90px]" />
 
         <button
           type="button"
           aria-label="Close creator profile"
-          onClick={close}
+          onClick={requestClose}
           className="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full border border-white/15 bg-black/45 backdrop-blur-xl transition hover:bg-black/70 active:bg-black/80 motion-safe:active:scale-95"
         >
           <X size={18} />
@@ -56,7 +78,8 @@ export function CreatorModal({ creator, onClose }: CreatorModalProps) {
           <CreatorPhoto
             creator={creator}
             sizes="(max-width: 1024px) 100vw, 40vw"
-            className="min-h-[420px] sm:min-h-[520px] lg:min-h-full"
+            className="h-[46dvh] min-h-[280px] md:h-auto md:min-h-[520px] lg:min-h-full"
+            imageClassName="object-[center_30%] md:object-center"
           >
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent p-6 pt-24">
               <VerifiedName name={creator.name} size="lg" />

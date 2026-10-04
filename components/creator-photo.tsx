@@ -10,6 +10,7 @@ type CreatorPhotoProps = {
   accent?: boolean;
   zoomOnHover?: boolean;
   className?: string;
+  imageClassName?: string;
   children?: ReactNode;
 };
 
@@ -20,6 +21,7 @@ export function CreatorPhoto({
   accent = true,
   zoomOnHover = false,
   className,
+  imageClassName,
   children,
 }: CreatorPhotoProps) {
   return (
@@ -30,7 +32,11 @@ export function CreatorPhoto({
         fill
         preload={preload}
         sizes={sizes}
-        className={cn("object-cover", zoomOnHover && "transition duration-700 ease-out motion-safe:group-hover:scale-[1.04]")}
+        className={cn(
+          "object-cover",
+          zoomOnHover && "transition duration-700 ease-out motion-safe:group-hover:scale-[1.04]",
+          imageClassName,
+        )}
       />
       {accent && <div className={cn("absolute inset-0 bg-gradient-to-t", creator.theme.gradient)} />}
       {children}
