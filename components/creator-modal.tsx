@@ -69,7 +69,7 @@ export function CreatorModal({ creator, onClose }: CreatorModalProps) {
           type="button"
           aria-label="Close creator profile"
           onClick={requestClose}
-          className="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full border border-white/15 bg-black/45 backdrop-blur-xl transition hover:bg-black/70 active:bg-black/80 motion-safe:active:scale-95"
+          className="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full border border-white/15 bg-black/45 backdrop-blur-xl transition duration-200 hover:bg-black/70 active:bg-black/80 motion-safe:active:scale-95"
         >
           <X size={18} />
         </button>

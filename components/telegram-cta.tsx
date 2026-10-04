@@ -23,7 +23,7 @@ export function TelegramCta() {
 
           <TelegramLink label="Open Neon Muse in Telegram">
             <Send size={16} /> Open Telegram
-            <ArrowUpRight size={15} className="transition motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
+            <ArrowUpRight size={15} className="transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
           </TelegramLink>
         </div>
       </div>

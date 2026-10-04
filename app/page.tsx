@@ -6,7 +6,7 @@ import { TelegramCta } from "@/components/telegram-cta";
 
 export default function Home() {
   return (
-    <main id="top" className="min-h-screen overflow-x-hidden">
+    <main id="top" className="min-h-screen overflow-x-clip">
       <Header />
       <Hero />
       <CreatorShowcase />

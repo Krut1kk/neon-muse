@@ -7,7 +7,7 @@ import { StatusDot } from "@/shared/ui/status-dot";
 import type { Creator, CreatorPrompt } from "@/types/creator";
 
 const TYPING_DELAY_MS = 600;
-const WORD_STAGGER_MS = 35;
+const WORD_STAGGER_MS = 22;
 
 type ChatBubbleProps = {
   from: "creator" | "user";
@@ -77,7 +77,7 @@ export function ChatPreview({ creator }: ChatPreviewProps) {
             {selectedPrompt.response.split(" ").map((word, index) => (
               <Fragment key={index}>
                 {index > 0 && " "}
-                <span style={{ animationDelay: `${index * WORD_STAGGER_MS}ms` }} className="motion-safe:animate-word-in">
+                <span style={{ animationDelay: `${index * WORD_STAGGER_MS}ms` }} className="inline-block motion-safe:animate-word-in">
                   {word}
                 </span>
               </Fragment>
@@ -97,7 +97,7 @@ export function ChatPreview({ creator }: ChatPreviewProps) {
               aria-pressed={isActive}
               onClick={() => selectPrompt(prompt)}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs transition hover:border-(--accent)/40 hover:bg-(--accent)/10 hover:text-white active:bg-(--accent)/15 motion-safe:active:scale-[0.97]",
+                "inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs transition duration-200 hover:border-(--accent)/40 hover:bg-(--accent)/10 hover:text-white active:bg-(--accent)/15 motion-safe:active:scale-[0.97]",
                 isActive ? "border-(--accent)/40 bg-(--accent)/10 text-white" : "border-white/10 bg-white/[0.05] text-white/65",
               )}
             >

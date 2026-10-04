@@ -39,10 +39,10 @@ export function Hero() {
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
             <a
               href="#creators"
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition active:bg-white/90 motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition duration-200 hover:bg-white/90 hover:shadow-[0_10px_30px_rgba(255,255,255,0.12)] active:bg-white/85 motion-safe:active:scale-[0.98]"
             >
               Meet the creators
-              <ArrowDown size={16} className="transition motion-safe:group-hover:translate-y-0.5" />
+              <ArrowDown size={16} className="transition-transform duration-200 motion-safe:group-hover:translate-y-1" />
             </a>
 
             <div className="flex items-center gap-3 text-left">

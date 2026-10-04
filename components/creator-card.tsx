@@ -46,8 +46,8 @@ export function CreatorCard({ creator, onOpen }: CreatorCardProps) {
             <p className="text-[10px] uppercase tracking-[0.14em] text-white/30">followers</p>
           </div>
 
-          <span className="grid size-10 place-items-center rounded-full bg-white text-black transition duration-300 group-hover:bg-(--accent) motion-safe:group-hover:rotate-12 motion-safe:group-hover:scale-105">
-            <ArrowUpRight size={17} />
+          <span className="grid size-10 place-items-center rounded-full bg-white text-black transition-colors duration-200 group-hover:bg-(--accent)">
+            <ArrowUpRight size={17} className="transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5" />
           </span>
         </div>
       </div>

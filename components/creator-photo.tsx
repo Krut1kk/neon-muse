@@ -34,7 +34,7 @@ export function CreatorPhoto({
         sizes={sizes}
         className={cn(
           "object-cover",
-          zoomOnHover && "transition duration-700 ease-out motion-safe:group-hover:scale-[1.04]",
+          zoomOnHover && "transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.04]",
           imageClassName,
         )}
       />

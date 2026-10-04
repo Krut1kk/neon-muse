@@ -12,17 +12,18 @@
 
   --animate-modal-in: modalIn 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-modal-out: modalOut 180ms cubic-bezier(0.4, 0, 1, 1) both;
-  --animate-sheet-in: sheetIn 500ms cubic-bezier(0.32, 0.72, 0, 1) both;
-  --animate-sheet-out: sheetOut 260ms cubic-bezier(0.32, 0, 0.67, 0) both;
+  --animate-sheet-in: sheetIn 360ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  --animate-sheet-out: sheetOut 220ms cubic-bezier(0.32, 0, 0.67, 0) both;
   --animate-backdrop-in: backdropIn 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-backdrop-out: backdropOut 180ms cubic-bezier(0.4, 0, 1, 1) both;
   --animate-fade-in: fadeIn 0.28s ease-out;
-  --animate-word-in: wordIn 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-word-in: wordIn 220ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
 
   @keyframes wordIn {
     from {
       opacity: 0;
-      filter: blur(4px);
+      transform: translateY(4px);
+      filter: blur(2px);
     }
   }
 

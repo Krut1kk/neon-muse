@@ -22,7 +22,7 @@ export function TelegramLink({ label, variant = "pill", className, children }: T
       rel="noreferrer"
       aria-label={`${label} (opens in a new tab)`}
       className={cn(
-        "items-center bg-telegram px-5 text-sm font-semibold text-white shadow-telegram transition hover:brightness-110 active:brightness-95 motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.98]",
+        "items-center bg-telegram px-5 text-sm font-semibold text-white shadow-telegram transition duration-200 hover:shadow-[0_18px_56px_rgba(42,171,238,0.32)] hover:brightness-110 active:brightness-95 motion-safe:active:scale-[0.98]",
         variants[variant],
         className,
       )}
