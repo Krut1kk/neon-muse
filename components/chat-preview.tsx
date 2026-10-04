@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useState, type ReactNode } from "react";
 import { MessageCircle, Sparkles } from "lucide-react";
 import { cn } from "@/shared/lib/cn";
 import { StatusDot } from "@/shared/ui/status-dot";
 import type { Creator, CreatorPrompt } from "@/types/creator";
 
-const THINKING_DELAY_MS = 600;
+const TYPING_DELAY_MS = 600;
+const WORD_STAGGER_MS = 35;
 
 type ChatBubbleProps = {
   from: "creator" | "user";
@@ -34,20 +35,20 @@ type ChatPreviewProps = {
 
 export function ChatPreview({ creator }: ChatPreviewProps) {
   const [selectedPrompt, setSelectedPrompt] = useState(creator.prompts[0]);
-  const [isThinking, setIsThinking] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    if (!isThinking) return;
+    if (!isTyping) return;
 
-    const timeout = setTimeout(() => setIsThinking(false), THINKING_DELAY_MS);
+    const timeout = setTimeout(() => setIsTyping(false), TYPING_DELAY_MS);
     return () => clearTimeout(timeout);
-  }, [isThinking, selectedPrompt]);
+  }, [isTyping, selectedPrompt]);
 
   const selectPrompt = (prompt: CreatorPrompt) => {
     if (prompt === selectedPrompt) return;
 
     setSelectedPrompt(prompt);
-    setIsThinking(true);
+    setIsTyping(true);
   };
 
   return (
@@ -66,14 +67,21 @@ export function ChatPreview({ creator }: ChatPreviewProps) {
 
         <ChatBubble from="user">{selectedPrompt.label}</ChatBubble>
 
-        {isThinking ? (
+        {isTyping ? (
           <ChatBubble from="creator" className="flex w-fit items-center gap-2 text-white/50">
             <span className="size-1.5 animate-pulse rounded-full bg-(--accent)" />
-            Thinking…
+            Typing…
           </ChatBubble>
         ) : (
           <ChatBubble from="creator" className="animate-fade-in ring-1 ring-inset ring-(--accent)/25">
-            {selectedPrompt.response}
+            {selectedPrompt.response.split(" ").map((word, index) => (
+              <Fragment key={index}>
+                {index > 0 && " "}
+                <span style={{ animationDelay: `${index * WORD_STAGGER_MS}ms` }} className="motion-safe:animate-word-in">
+                  {word}
+                </span>
+              </Fragment>
+            ))}
           </ChatBubble>
         )}
       </div>

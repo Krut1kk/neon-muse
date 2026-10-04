@@ -19,7 +19,7 @@ AI creator showcase built as a frontend prototype for a headless AI platform.
 - Mobile-first responsive UI
 - Interactive creator profiles in an accessible native `<dialog>`
 - Mock AI conversation flow with prompt-specific responses
-- Thinking state between prompt and response
+- Typing indicator between prompt and response
 - Shareable creator URLs (`/?creator=sofia`)
 - Telegram CTA
 - Optimized Next.js images with selective preload
